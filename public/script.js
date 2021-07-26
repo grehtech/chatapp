@@ -83,14 +83,14 @@ peer.on("call", function (call) {
 }); 
 
 peer.on("open", (id) => {
-  socket.broadcast.emit("join-room", ROOM_ID, id);
+  socket.emit("join-room", ROOM_ID, id).broadcast;
   // creat a list of users
 
     let usersList;
     usersList = document.createElement("li");
     usersList.innerHTML = id;
     all_messages.append(usersList);
-    socket.broadcast.emit('new-user', id);
+    socket.emit('new-user', id).broadcast;
 
     
   
