@@ -83,7 +83,7 @@ peer.on("call", function (call) {
 }); 
 
 peer.on("open", (id) => {
-  socket.broadcast.emit("join-room", ROOM_ID, id);
+  socket.emit("join-room", ROOM_ID, id);
   // creat a list of users
 
     let usersList;
