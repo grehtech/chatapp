@@ -90,10 +90,7 @@ peer.on("open", (id) => {
     usersList = document.createElement("li");
     usersList.innerHTML = id;
     all_messages.append(usersList);
-    socket.broadcast.emit('new-user', id);
-
-    
-  
+    socket.emit('new-user', id);
 });
 
 // CHAT
