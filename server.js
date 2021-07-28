@@ -25,19 +25,19 @@ app.get("/:room", (req, res) => {
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
     socket.join(roomId);
-    socket.to(roomId).emit("user-connected", userId);
+    socket.broadcast.to(roomId).emit("user-connected", userId);
     
     socket.on("disconnect",  () => {
-      socket.to(roomId).emit("user-disconnected", userId);
+      socket.broadcast.to(roomId).emit("user-disconnected", userId);
     })
 
     socket.on("message", (message) => {
-      io.to(roomId).emit("createMessage", message);
+      io.broadcast.to(roomId).emit("createMessage", message);
     });
 
     // show users online
     socket.on("joinedUser", (message2) => {
-      io.to(roomId).emit("new-user", message2);
+      io.broadcast.to(roomId).emit("new-user", message2);
     });
   });
 });
