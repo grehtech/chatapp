@@ -52,7 +52,7 @@ navigator.mediaDevices
 
     document.addEventListener("keydown", (e) => {
       if (e.which === 13 && chatInputBox.value != "") {
-        socket.broadcast.emit("message", chatInputBox.value);
+        socket.emit("message", chatInputBox.value);
         chatInputBox.value = "";
       }
     });
